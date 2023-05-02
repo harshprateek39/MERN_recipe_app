@@ -165,7 +165,7 @@ const LoginForm = ({ onSubmit, onclick }) => {
      const handleSubmit=async (event)=>{
          event.preventDefault();
      try {
-        const response =await axios.post("http://localhost:3001/auth/login", {
+        const response =await axios.post("https://mern-recipe-backend-fz6l.vercel.app/auth/login", {
         username:email,password
      });
         setCookies("access",response.data.token);
@@ -208,7 +208,7 @@ const RegisterForm = ({ onSubmit, onclick }) => {
   const handleSubmit=async (event)=>{
           event.preventDefault();
       try {
-         const apple= await axios.post("http://localhost:3001/auth/register", {
+         const apple= await axios.post("https://mern-recipe-backend-fz6l.vercel.app/auth/register", {
              name,username:email,password
           });
           console.log(apple.data.message);

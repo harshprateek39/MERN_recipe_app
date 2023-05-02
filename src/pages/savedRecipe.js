@@ -13,7 +13,7 @@ const SavedRecipe = () => {
 const fetchSavedRecipe=async()=>{
   
   try { 
-    const response = await axios.get(`http://localhost:3001/recipes/savedRecipe/${userID}`);
+    const response = await axios.get(`https://mern-recipe-backend-fz6l.vercel.app/recipes/savedRecipe/${userID}`);
    setsavedRecipe(response.data);
    console.log(response.data.savedRecipe);
    console.log(savedRecipe.length==0);

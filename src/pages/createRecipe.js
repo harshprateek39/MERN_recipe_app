@@ -42,7 +42,7 @@ const CreateRecipe = () => {
       recipe.userOwner=a;
        
      
-      const x=await axios.post("http://localhost:3001/recipes/createRecipe",recipe
+      const x=await axios.post("https://mern-recipe-backend-fz6l.vercel.app/recipes/createRecipe",recipe
       ,{headers:{authorization:cookies.access}});
       if(x.data.message=="success"){
       navigate("/");}

@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(()=>{
 const fetchRecipe =async()=>{
   try {
-    const response = await axios.get("http://localhost:3001/recipes");
+    const response = await axios.get("https://mern-recipe-backend-fz6l.vercel.app/recipes");
     setRecipe(response.data);
     
   } catch (error) {
@@ -21,7 +21,7 @@ const fetchRecipe =async()=>{
 const fetchSavedRecipe=async()=>{
   
   try { 
-    const response = await axios.get(`http://localhost:3001/recipes/savedRecipe/ids/${userID}`);
+    const response = await axios.get(`https://mern-recipe-backend-fz6l.vercel.app/recipes/savedRecipe/ids/${userID}`);
    setsavedRecipe(response.data.savedRecipe);
    
   } catch (error) {
@@ -38,7 +38,7 @@ fetchSavedRecipe();}
     
     
     try {
-      const response = await axios.put("http://localhost:3001/recipes",{recipeID,userID},
+      const response = await axios.put("https://mern-recipe-backend-fz6l.vercel.app/recipes",{recipeID,userID},
       {headers:{authorization:cookies.access}});
       setsavedRecipe(response.data.savedRecipe);
       
