@@ -19,92 +19,9 @@ const [showLoginForm, setShowLoginForm] = useState(true);
 };
 
 
-
-// const Register=()=>{
-//     const [username,setUsername]=useState("")
-//     const [password,setPassword]=useState("") 
-   
-//     const onsubmit=async (event)=>{
-//      event.preventDefault();
-//  try {
-//      await axios.post("http://localhost:3001/auth/register", {
-//         username,password
-//      });
-//      alert("Registered!")
-//  } catch (error) {
-//     console.log(error);
-//  }
-//     };
-//     return (
-//        <Form 
-//        title="Register"
-//        username={username}
-//        setUsername={setUsername}
-//        password={password}
-//        setPassword={setPassword}
-//        onSubmit={onsubmit}
-//         />
-//     )
-// }
-// const Login=()=>{
-//     const [username,setUsername]=useState("")
-//     const [password,setPassword]=useState("")
-//     const [cookies, setCookies] =useCookies(["access"])
-//     const navigate=useNavigate();
-//     const onsubmit=async (event)=>{
-//         event.preventDefault();
-//     try {
-//        const response =await axios.post("http://localhost:3001/auth/login", {
-//            username,password
-//         });
-//         console.log(response);
-//         if(response.data.token== undefined){ return alert("Wrong credential");}
-//         setCookies("access",response.data.token);
-        
-//         window.localStorage.setItem("userID",response.data.userID);
-//         navigate('/');
-//     } catch (error) {
-//        console.log(error);
-//     }
-//        };
-
-//     return (
-//        <Form 
-//        title="Login"
-//        username={username}
-//        setUsername={setUsername}
-//        password={password}
-//        setPassword={setPassword}
-//        onSubmit={onsubmit}
-//         />)
-// }
-
-// const Form =({title,username,setUsername,password,setPassword, onSubmit})=>{
-//     return(
-//         <div className='auth-container'>
-//         <form onSubmit={onSubmit}>
-//             <h2>{title}</h2>
-//             <div className='form-group'>
-//                 <label htmlFor='username'>Username:</label>
-//                 <input type ="text" 
-//                 value={username}
-//                 id="username" onChange={(event)=>{ setUsername(event.target.value)}}></input>
-//             </div>
-//             <div className='form-group'>
-//                 <label htmlFor='passsword'>Password:</label>
-//                 <input type ="text"
-//                 value={password} id="password" onChange={(event)=>{setPassword(event.target.value)}}></input>
-//             </div>
-//             <button type='submit'>{title}</button>
-//         </form>
-//         </div>
-//     )
-// }
-
-
-
 const FormContainer = styled.div`
   display: flex;
+  backgroud-color:"red";
   width:100%;
   flex-direction: column;
   align-items: center;
@@ -125,6 +42,7 @@ const FormInput = styled.input`
   border-radius: 5px;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
   font-size: 16px;
+  
 
   &:focus {
     outline: none;
@@ -168,10 +86,15 @@ const LoginForm = ({ onSubmit, onclick }) => {
         const response =await axios.post("https://mern-recipe-backend-fz6l.vercel.app/auth/login", {
         username:email,password
      });
+     if (response.data.message){
+      alert(response.data.message);
+      setPassword("");
+      setEmail("");
+     }
+      if( response?.data?.token){
         setCookies("access",response.data.token);
-        
          window.localStorage.setItem("userID",response.data.userID);
-        navigate('/');
+        navigate('/');}
    } catch (error) {
        console.log(error);
     }
@@ -195,7 +118,7 @@ const LoginForm = ({ onSubmit, onclick }) => {
         required
       />
       <FormButton type="submit" >Submit</FormButton>
-      <FormSwitch onClick={onclick}>Don't have an account? Register</FormSwitch>
+      <FormSwitch onClick={onclick}>Don't have an account? <span style={{ color:"blue"}}>Register</span></FormSwitch>
     </form>
   );
 };
@@ -244,13 +167,13 @@ const RegisterForm = ({ onSubmit, onclick }) => {
         required
       />
       <FormButton type="submit">Submit</FormButton>
-      <FormSwitch onClick={onclick}>Already have an account? Login</FormSwitch>
+      <FormSwitch onClick={onclick}>Already have an account? <span style={{ color:"blue"}}>Login</span></FormSwitch>
     </form>
   );
 };
 
 const LoginFormContainer = styled(FormContainer)`
-  width: 400px;
+  
 `;
 
 const RegisterFormContainer = styled(FormContainer)``

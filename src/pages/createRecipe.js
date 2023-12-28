@@ -40,8 +40,6 @@ const CreateRecipe = () => {
       const a= window.localStorage.getItem("userID");
       if(a==null){return alert("Login to add");}
       recipe.userOwner=a;
-       
-     
       const x=await axios.post("https://mern-recipe-backend-fz6l.vercel.app/recipes/createRecipe",recipe
       ,{headers:{authorization:cookies.access}});
       if(x.data.message=="success"){

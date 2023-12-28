@@ -3,6 +3,7 @@ import React from 'react';
 import {useCookies} from "react-cookie";
 import { useState ,useEffect } from 'react'
 import { useGetUserID } from "../hooks/useGetuserID";
+import loading from '../components/loading.gif'
 const Home = () => {
   const [recipe,setRecipe]=useState([]);
   const [savedRecipe,setsavedRecipe]=useState([]);
@@ -12,9 +13,10 @@ const Home = () => {
 const fetchRecipe =async()=>{
   try {
     const response = await axios.get("https://mern-recipe-backend-fz6l.vercel.app/recipes");
-    setRecipe(response.data);
+     setRecipe(response.data);
+    console.log(recipe +"aa");
     
-  } catch (error) {
+  } catch (error) { 
     console.log(error); 
   }
 } 
@@ -54,7 +56,7 @@ fetchSavedRecipe();}
     <div className='home'>
       <h1>Recipes</h1>
       <div className='card-container'>
-        {recipe?.map((recipe) => (
+        {recipe.length!=0?recipe.map((recipe) => (
             
             <div key={recipe._id} className='main-card' ><div>
               <h2>{recipe.name}</h2>
@@ -76,7 +78,8 @@ fetchSavedRecipe();}
             </div>
             </div>
           
-        ))}</div>
+        )):<div style={{ width:"100vw" ,display:"flex" , justifyContent:"center" ,alignItems:"center" }} ><img style={{ width:"200px"}} src={loading}></img></div>
+        }</div>
       
     </div>
   )
