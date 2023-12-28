@@ -118,7 +118,9 @@ const Navbar = () => {
         <NavbarMenuItem>
           <NavbarLink to="/savedRecipe" activeClassName="active">
             Saved
-          </NavbarLink>
+          </NavbarLink> 
+        </NavbarMenuItem>
+        <NavbarMenuItem>
           <NavbarLink to="/contact" activeClassName="active">
             Contact Us
           </NavbarLink>

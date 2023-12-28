@@ -67,6 +67,9 @@ const RegisterForm = () => {
              name,email,message
           });
           console.log(apple.data.message);
+          setName("");
+          setEmail("");
+          setMessage("");
           alert(apple.data.message);
           
       } catch (error) {
